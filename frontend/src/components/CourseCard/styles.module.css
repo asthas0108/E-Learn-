@@ -1,0 +1,178 @@
+/* .course_card {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    transition: 0.5s;
+}
+.course_card:hover{
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+}
+.course_image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.course_card > h3{
+    font-size: 18px;
+    color: black;
+    margin-bottom: 10px;
+}
+.course_card > p{
+    font-size: 14px;
+    counter-reset: #666;
+    margin-bottom: 5px;
+}
+.btn{
+    border-radius: 10px;
+    background-color: rgb(3, 24, 246);
+    color: white;
+    font-size: 20px;
+    padding: 5px 20px;
+    margin-top: 5px;
+    border: none;
+}
+.btn:hover{
+    scale: 1.01;
+}  */
+
+/* .course_card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 280px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.course_card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.course_image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.course_card > h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e1e1e;
+    margin-bottom: 10px;
+}
+
+.course_card > p {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.btn {
+    border-radius: 8px;
+    background: linear-gradient(to right, #3f5efb, #2b80ff);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #2b80ff, #3f5efb);
+    transform: scale(1.05);
+}
+
+.course_card button + button {
+    margin-left: 10px;
+} */
+
+
+
+.course_card {
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 280px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.course_card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.course_image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.course_card > h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e1e1e;
+  margin-bottom: 10px;
+}
+
+.course_card > p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.btn_container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.btn {
+  border-radius: 8px;
+  background-color: #0318f6;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #0023c4;
+  transform: scale(1.03);
+}
+
+.delete_btn {
+  background-color: #ff3b3b;
+}
+
+.delete_btn:hover {
+  background-color: #d12e2e;
+}
+

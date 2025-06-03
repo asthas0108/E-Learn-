@@ -1,0 +1,131 @@
+/* .btn{
+    border-radius: 10px;
+    background-color: rgb(3, 24, 246);
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-top: 5px;
+    border: none;
+}
+.btn:hover{
+    scale: 1.01;
+}
+.profile{
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    margin: 185px auto;
+    box-shadow: 0px 2px 4px rgb(124, 124, 124);
+    @media(max-width: 768px){
+        padding: 10px;
+        width: 80%;
+        margin: 90px auto;
+    }
+}
+.profile_info{
+    text-align: left;
+    margin-top: 15px;
+}
+.profile_info > p{
+    margin-bottom: 10px;
+    color: #333;
+}
+.profile_info > p > strong{
+    color: #333;
+} */
+
+.profile {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 400px;
+  margin: 120px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info_row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.label {
+  font-weight: bold;
+  color: #555;
+}
+
+.value {
+  color: #333;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.btn,
+.btn_secondary,
+.btn_danger {
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn {
+  background-color: #0052cc;
+  color: white;
+}
+
+.btn:hover,
+.btn_secondary:hover,
+.btn_danger:hover {
+  transform: scale(1.03);
+}
+
+.btn_secondary {
+  background-color: #6a0dad;
+  color: white;
+}
+
+.btn_danger {
+  background-color: #e63946;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    width: 90%;
+    padding: 20px;
+    margin: 60px auto;
+  }
+
+  .info_row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+}

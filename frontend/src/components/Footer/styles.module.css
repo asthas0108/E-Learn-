@@ -1,0 +1,32 @@
+.container{
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    bottom: 0;
+}
+.footer_content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.para{
+    margin: 0;
+    font-size: 18px;
+}
+.para > a{
+    text-decoration: none;
+    color: inherit;
+}
+.social_links{
+    margin-top: 10px;
+}
+.social_links > a{
+    color: white;
+    font-size: 20px;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.social_links > a:hover{
+    color: aliceblue;
+}
