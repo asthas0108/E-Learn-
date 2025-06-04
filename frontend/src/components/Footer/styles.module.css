@@ -1,32 +1,89 @@
-.container{
-    background-color: black;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    bottom: 0;
+ .footer {
+  background-color: #000;
+  color: white;
+  padding: 4rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.footer_content {
-    max-width: 1200px;
-    margin: 0 auto;
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  gap: 130px;
 }
-.para{
-    margin: 0;
-    font-size: 18px;
+
+.column {
+  flex: 1;
+  min-width: 300px;
+  margin-bottom: 2rem;
 }
-.para > a{
-    text-decoration: none;
-    color: inherit;
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
 }
-.social_links{
-    margin-top: 10px;
+
+.highlight {
+  color: rgb(21, 143, 250);
 }
-.social_links > a{
-    color: white;
-    font-size: 20px;
-    margin: 0 5px;
-    text-decoration: none;
-    transition: color 0.3s ease;
+
+.desc {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  max-width: 260px;
 }
-.social_links > a:hover{
-    color: aliceblue;
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.column p {
+  margin: 0.5rem 0;
+}
+
+.subscribeSection {
+  text-align: center;
+}
+
+.subscribeText {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 2rem;
+  overflow: hidden;
+  background-color: white;
+}
+
+.inputGroup input {
+  padding: 0.8rem 1rem;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.inputGroup button {
+  background-color: orange;
+  border: none;
+  padding: 0 1.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-radius: 0;
 }
