@@ -95,7 +95,7 @@ export const paymentVerification = tryCatch(async(req, res) => {
 
     const body = razorpay_order_id + "|" + razorpay_payment_id;
 
-    const expectedSignature = crypto.createHmac("sha256", process.env.Razorpay_Key_Secret).update(body).digest("hex");
+    const expectedSignature = crypto.createHmac("sha256", process.env.Razorpay_Secret).update(body).digest("hex");
 
     const isAuthentic = expectedSignature === razorpay_signature;
 
@@ -110,11 +110,12 @@ export const paymentVerification = tryCatch(async(req, res) => {
         const course = await Course.findById(req.params.id);
 
         user.subscription.push(course._id);
-        await Progress.create({
-            course: course._id,
-            completedLectures: [],
-            user: req.user._id
-        })
+        
+        // await Progress.create({
+        //     course: course._id,
+        //     completedLectures: [],
+        //     user: req.user._id
+        // })
 
         await user.save();
 

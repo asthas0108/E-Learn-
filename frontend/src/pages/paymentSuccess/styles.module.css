@@ -13,12 +13,12 @@
     text-align: center;
     width: 300px;
 }
-h2{
+.msg h2{
     font-size: 32px;
     color: black;
     margin-bottom: 15px;
 }
-a{
+.msg a{
     text-decoration: none;
 }
 .btn{

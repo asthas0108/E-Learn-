@@ -35,14 +35,14 @@ const CourseDescription = () => {
         const token = localStorage.getItem("token");
         setLoading(true);
 
-        const { data: {order} } = await axios.post(`${server}/api/course/checkout/${params.id}`, {}, {
+        const { data: {order} } = await axios.post(`${server}/api/course/checkout/${id}`, {}, {
           headers:{
             token,
           }
         });
 
         const options = {
-          key:  "",
+          key:  process.env.NEXT_PUBLIC_RAZORPAY_KEY,
           amount: order.id,
           currency: "INR",
           name: "E-Learning",
@@ -71,7 +71,7 @@ const CourseDescription = () => {
 
               setLoading(false);
 
-              router.push(`/payment-success/${razorpay_payment_id}`);
+              router.push(`/paymentSuccess/${razorpay_payment_id}`);
             }catch(err) {
               toast.error(err.response.data.message);
             }
@@ -144,7 +144,7 @@ const CourseDescription = () => {
           <section className={styles.description}>
             <div className={styles.header}>
               <img
-                src={`${server}/${course.image}`}
+                src={course.image}
                 alt={course.title}
                 className={styles.image}
               />

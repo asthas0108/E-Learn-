@@ -2,11 +2,12 @@ import React from 'react';
 import styles from "./styles.module.css";
 import { useParams } from 'react-router-dom';
 import { useUser } from '@/context/UserContext';
+import { useRouter } from 'next/router';
 
 const PaymentSuccess = () => {
 
     const params = useParams();
-
+    const router = useRouter()
     const {user} = useUser();
 
   return (
@@ -15,10 +16,10 @@ const PaymentSuccess = () => {
             <h2>Payment Successfull !</h2>
             <p>Your course subscription has been activated.</p>
             <p>Reference No:- {params.id}</p>
-            <a href={`${user._id}/dashboard`} className={styles.btn}>Go to Dashboard</a>
+            <button onClick={() => router.push(`/dashboard/${user._id}`)} className={styles.btn}>Go to Dashboard</button>
         </div> }
     </div>
   )
-}
+} 
 
 export default PaymentSuccess;

@@ -10,6 +10,6 @@ router.route('/lectures/:id').get(isAuth, fetchLectures);
 router.route('/lecture/:id').get(isAuth, fetchLecture);
 router.route('/myCourses').get(isAuth, getMyCourses);
 router.route('/course/checkout/:id').post(isAuth, checkout);
-router.route('/verification/:id').get(isAuth, paymentVerification);
+router.route('/verification/:id').post(isAuth, paymentVerification);
 
 export default router;
