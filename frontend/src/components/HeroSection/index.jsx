@@ -13,15 +13,15 @@ const HeroSection = () => {
           <span className={styles.highlight}>Studying</span> Online is now<br /> much easier
         </h1>
         <p className={styles.desc}>
-          Welcome to EvaluateU, where learning knows no bounds. 
+          Welcome to ElevateU, where learning knows no bounds. 
           <br/>
           We believe that education is the key to personal and professional growth <br/>We're here to guide you on your journey to success. 
         </p>
         <div className={styles.buttons}>
           <button className={styles.joinBtn} onClick={() => router.push("/courses")}>Get Started</button>
-          <button className={styles.playBtn}>
-            {/* <FaPlay size={12} /> <span>Watch how it works</span> */}
-          </button>
+          {/* <button className={styles.playBtn}>
+            <FaPlay size={12} /> <span>Watch how it works</span>
+          </button> */}
         </div>
       </div>
 

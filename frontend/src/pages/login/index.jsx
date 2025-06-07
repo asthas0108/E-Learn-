@@ -31,7 +31,7 @@ const Login = () => {
         </div>
 
         <div className={styles.right}>
-          <h2 className={styles.welcome}>Welcome to EvaluateU..!</h2>
+          <h2 className={styles.welcome}>Welcome to ElevateU..!</h2>
           <div className={styles.toggle}>
             <button className={`${styles.tab} ${styles.active}`}>Login</button>
             <button className={styles.tab} onClick={() => router.push('/register')}>Register</button>
