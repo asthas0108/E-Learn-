@@ -265,7 +265,7 @@ import toast from 'react-hot-toast';
 import { server } from '@/config';
 import { UserLayout } from '@/layout/UserLayout';
 import Footer from '@/components/Footer';
-// import { headers } from 'next/headers';
+import {TiTick} from "react-icons/ti"
 
 const Lecture = () => {
 
@@ -287,7 +287,7 @@ const Lecture = () => {
   const [completed, setCompleted] = useState("");
   const [completedLec, setCompletedLec] = useState("");
   const [lectLength, setLectLength] = useState("");
-  const [progress, setProgress] = useState([]);
+  const [progress, setProgress] = useState({});
 
   const { id } = router.query;
 
@@ -448,165 +448,506 @@ if (loading) {
 
   }
 
-  const addProgress = async (id) => {
+  const addProgress = async (lectureid) => {
     console.log("lecture completed");
     try{
-      const {data} = await axios.post(`${server}/api/user/progress?course=${id}&lectureId=${id}`, {}, {
+      const {data} = await axios.post(`${server}/api/user/progress?course=${id}&lectureId=${lectureid}`, {}, {
         headers: {
           token: localStorage.getItem("token"),
         },
       });
 
       console.log(data.message);
+      fetchProgress()
     }catch(err){
       console.log(err);
     }
   }
 
+// return (
+//   <>
+//     <UserLayout>
+//       {load ? (
+//         <Loading />
+//       ) : (
+//         <>
+
+//           {/* adding progress feature */}
+
+//           <div className={styles.progress}>
+//             Lecture completed = {completedLec} out of {lectLength}
+//             <br/>
+
+//             <progress value={completed} max={100}></progress>{completed} %
+//           </div>
+
+//           {/* ended */}
+
+//           <div className={styles.lecture_page}>
+//             {/* Left Side - Video & Lecture Info */}
+//             <div className={styles.left}>
+//               {lecLoading ? (
+//                 <Loading />
+//               ) : lecture?.video ? (
+//                 <>
+//                   <div className={styles.videoContainer}>
+//                     <video
+//                       src={lecture.video}
+//                       width="100%"
+//                       height="auto"
+//                       controls
+//                       disablePictureInPicture
+//                       controlsList="nodownload noremoteplayback"
+//                       disableRemotePlayback
+//                       autoPlay
+//                       onEnded={() => {
+//                         addProgress(lecture._id)
+//                       }}
+//                       className={styles.video}
+//                     ></video>
+//                   </div>
+//                   <div className={styles.lectureInfo}>
+//                     <h1 className={styles.lectureTitle}>{lecture.title}</h1>
+//                     <p className={styles.lectureDesc}>{lecture.description}</p>
+//                   </div>
+//                 </>
+//               ) : (
+//                 <h1 className={styles.selectPrompt}>Please select a lecture</h1>
+//               )}
+//             </div>
+
+//             {/* Right Side - Lecture List and Admin Panel */}
+//             <div className={styles.right}>
+//               {/* Admin Toggle Button */}
+//               {user?.role === "admin" && (
+//                 <button onClick={() => setShow(!show)} className={styles.btn}>
+//                   {show ? "Close" : "Add Lecture"}
+//                 </button>
+//               )}
+
+//               {/* Add Lecture Form */}
+//               {show && (
+//                 <div className={styles.lecture_form}>
+//                   <h2>Add Lecture</h2>
+//                   <form onSubmit={submitHandler}>
+//                     <label htmlFor="title">Title</label>
+//                     <input
+//                       type="text"
+//                       id="title"
+//                       required
+//                       value={title}
+//                       onChange={(e) => setTitle(e.target.value)}
+//                     />
+
+//                     <label htmlFor="description">Description</label>
+//                     <input
+//                       type="text"
+//                       id="description"
+//                       required
+//                       value={description}
+//                       onChange={(e) => setDescription(e.target.value)}
+//                     />
+
+//                     <input
+//                       type="file"
+//                       accept="video/*"
+//                       required
+//                       onChange={changeVideoHandler}
+//                     />
+
+//                     {videoPrev && (
+//                       <video
+//                         src={videoPrev}
+//                         width="100%"
+//                         height="auto"
+//                         controls
+//                         className={styles.previewVideo}
+//                       />
+//                     )}
+
+//                     <button type="submit" className={styles.btn} disabled={btnLoading}>
+//                       {btnLoading ? "Please Wait..." : "Add"}
+//                     </button>
+//                   </form>
+//                 </div>
+//               )}
+
+//               {/* Lecture List */}
+//               <div className={styles.lectureList}>
+//                 {lectures && lectures.length > 0 ? (
+//                   lectures.map((e, i) => (
+//                     <div key={e._id} className={styles.lectureItem}>
+//                       <div
+//                         onClick={() => fetchLecture(e._id)}
+//                         className={`${styles.lecNumber} ${
+//                           lecture._id === e._id ? styles.active : ""
+//                         }`}
+//                       >
+//                         {i + 1}. {e.title}
+//                         {
+//                           progress?.completedLectures?.includes(e._id) && 
+//                           <span style={{
+//                             backgroundColor: "green",
+//                             display: "flex",
+//                             justifyContent: "center",
+//                             alignItems: "center",
+//                             width: "20px",
+//                             height: "20px",
+//                             borderRadius: "50%",
+//                           }}>
+//                             <TiTick color="white" size={12} />
+//                           </span>
+
+//                         }
+//                       </div>
+
+//                       {/* Delete Button (Admin Only) */}
+//                       {user?.role === "admin" && (
+//                         <button
+//                           onClick={() => deleteLectureHandler(e._id)}
+//                           className={styles.deleteBtn}
+//                         >
+//                           Delete
+//                         </button>
+//                       )}
+//                     </div>
+//                   ))
+//                 ) : (
+//                   <p className={styles.noLectures}>No lectures yet!</p>
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+//         </>
+//       )}
+//     </UserLayout>
+//     <Footer />
+//   </>
+// );
 return (
+  // <>
+  //   <UserLayout>
+  //     {load ? (
+  //       <Loading />
+  //     ) : (
+  //       <>
+  //         {/* Enhanced progress with pie chart */}
+  //         <div className={styles.progressWrapper}>
+  //           <div className={styles.progressInfo}>
+  //             <h3>Lecture Progress</h3>
+  //             <p>{completedLec} out of {lectLength} lectures completed</p>
+  //             <p>{completed}% done</p>
+  //           </div>
+  //           <div className={styles.pieContainer}>
+  //             <svg width="100" height="100" viewBox="0 0 36 36" className={styles.circularChart}>
+  //               <path
+  //                 className={styles.circleBg}
+  //                 d="M18 2.0845
+  //                    a 15.9155 15.9155 0 0 1 0 31.831
+  //                    a 15.9155 15.9155 0 0 1 0 -31.831"
+  //                 fill="none"
+  //                 stroke="#eee"
+  //                 strokeWidth="2"
+  //               />
+  //               <path
+  //                 className={styles.circle}
+  //                 strokeDasharray={`${completed}, 100`}
+  //                 d="M18 2.0845
+  //                    a 15.9155 15.9155 0 0 1 0 31.831
+  //                    a 15.9155 15.9155 0 0 1 0 -31.831"
+  //                 fill="none"
+  //                 stroke="#00acc1"
+  //                 strokeWidth="2"
+  //               />
+  //             </svg>
+  //           </div>
+  //         </div>
+
+  //         <div className={styles.lecture_page}>
+  //           <div className={styles.left}>
+  //             {lecLoading ? (
+  //               <Loading />
+  //             ) : lecture?.video ? (
+  //               <>
+  //                 <div className={styles.videoContainer}>
+  //                   <video
+  //                     src={lecture.video}
+  //                     width="100%"
+  //                     height="auto"
+  //                     controls
+  //                     disablePictureInPicture
+  //                     controlsList="nodownload noremoteplayback"
+  //                     disableRemotePlayback
+  //                     autoPlay
+  //                     onEnded={() => {
+  //                       addProgress(lecture._id);
+  //                     }}
+  //                     className={styles.video}
+  //                   ></video>
+  //                 </div>
+  //                 <div className={styles.lectureInfo}>
+  //                   <h1 className={styles.lectureTitle}>{lecture.title}</h1>
+  //                   <p className={styles.lectureDesc}>{lecture.description}</p>
+  //                 </div>
+  //               </>
+  //             ) : (
+  //               <h1 className={styles.selectPrompt}>Please select a lecture</h1>
+  //             )}
+  //           </div>
+
+  //           <div className={styles.right}>
+  //             {user?.role === "admin" && (
+  //               <button onClick={() => setShow(!show)} className={styles.btn}>
+  //                 {show ? "Close" : "Add Lecture"}
+  //               </button>
+  //             )}
+
+  //             {show && (
+  //               <div className={styles.lecture_form}>
+  //                 <h2>Add Lecture</h2>
+  //                 <form onSubmit={submitHandler}>
+  //                   <label htmlFor="title">Title</label>
+  //                   <input
+  //                     type="text"
+  //                     id="title"
+  //                     required
+  //                     value={title}
+  //                     onChange={(e) => setTitle(e.target.value)}
+  //                   />
+  //                   <label htmlFor="description">Description</label>
+  //                   <input
+  //                     type="text"
+  //                     id="description"
+  //                     required
+  //                     value={description}
+  //                     onChange={(e) => setDescription(e.target.value)}
+  //                   />
+  //                   <input
+  //                     type="file"
+  //                     accept="video/*"
+  //                     required
+  //                     onChange={changeVideoHandler}
+  //                   />
+  //                   {videoPrev && (
+  //                     <video
+  //                       src={videoPrev}
+  //                       width="100%"
+  //                       height="auto"
+  //                       controls
+  //                       className={styles.previewVideo}
+  //                     />
+  //                   )}
+  //                   <button type="submit" className={styles.btn} disabled={btnLoading}>
+  //                     {btnLoading ? "Please Wait..." : "Add"}
+  //                   </button>
+  //                 </form>
+  //               </div>
+  //             )}
+
+  //             <div className={styles.lectureList}>
+  //               {lectures && lectures.length > 0 ? (
+  //                 lectures.map((e, i) => (
+  //                   <div key={e._id} className={styles.lectureItem}>
+  //                     <div
+  //                       onClick={() => fetchLecture(e._id)}
+  //                       className={`${styles.lecNumber} ${
+  //                         lecture._id === e._id ? styles.active : ""
+  //                       }`}
+  //                     >
+  //                       {i + 1}. {e.title}
+  //                       {progress?.completedLectures?.includes(e._id) && (
+  //                         <span
+  //                           style={{
+  //                             backgroundColor: "green",
+  //                             display: "flex",
+  //                             justifyContent: "center",
+  //                             alignItems: "center",
+  //                             width: "20px",
+  //                             height: "20px",
+  //                             borderRadius: "50%",
+  //                           }}
+  //                         >
+  //                           <TiTick color="white" size={12} />
+  //                         </span>
+  //                       )}
+  //                     </div>
+  //                     {user?.role === "admin" && (
+  //                       <button
+  //                         onClick={() => deleteLectureHandler(e._id)}
+  //                         className={styles.deleteBtn}
+  //                       >
+  //                         Delete
+  //                       </button>
+  //                     )}
+  //                   </div>
+  //                 ))
+  //               ) : (
+  //                 <p className={styles.noLectures}>No lectures yet!</p>
+  //               )}
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </>
+  //     )}
+  //   </UserLayout>
+  //   <Footer />
+  // </>
   <>
-    <UserLayout>
-      {load ? (
-        <Loading />
-      ) : (
-        <>
+  <UserLayout>
+    {load ? (
+      <Loading />
+    ) : (
+      <>
+        <div className={styles.progressWrapper}>
+          <div className={styles.progressInfo}>
+            <h3>📈 Lecture Progress</h3>
+            <p>{completedLec} out of {lectLength} lectures completed</p>
+            <p>{completed}% done</p>
+          </div>
+          <div className={styles.pieContainer}>
+            <svg width="100" height="100" viewBox="0 0 36 36" className={styles.circularChart}>
+              <path
+                className={styles.circleBg}
+                d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#eee"
+                strokeWidth="2"
+              />
+              <path
+                className={styles.circle}
+                strokeDasharray={`${completed}, 100`}
+                d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#00c853"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </div>
+        
 
-          {/* adding progress feature */}
-
-          <div className={styles.progress}>
-            Lecture completed = {completedLec} out of {lectLength}
-            <br/>
-
-            <progress value={completed} max={100}>{completed} %</progress>
+        <div className={styles.lecture_page}>
+          <div className={styles.left}>
+            {lecLoading ? (
+              <Loading />
+            ) : lecture?.video ? (
+              <>
+                <div className={styles.videoContainer}>
+                  <video
+                    src={lecture.video}
+                    width="100%"
+                    height="auto"
+                    controls
+                    disablePictureInPicture
+                    controlsList="nodownload noremoteplayback"
+                    disableRemotePlayback
+                    autoPlay
+                    onEnded={() => {
+                      addProgress(lecture._id);
+                    }}
+                    className={styles.video}
+                  ></video>
+                </div>
+                <div className={styles.lectureInfo}>
+                  <h1 className={styles.lectureTitle}>{lecture.title}</h1>
+                  <p className={styles.lectureDesc}>{lecture.description}</p>
+                </div>
+              </>
+            ) : (
+              <h1 className={styles.selectPrompt}>🎯 Please select a lecture</h1>
+            )}
           </div>
 
-          {/* ended */}
+          <div className={styles.right}>
+            {user?.role === "admin" && (
+              <button onClick={() => setShow(!show)} className={styles.btn}>
+                {show ? "Close" : "➕ Add Lecture"}
+              </button>
+            )}
 
-          <div className={styles.lecture_page}>
-            {/* Left Side - Video & Lecture Info */}
-            <div className={styles.left}>
-              {lecLoading ? (
-                <Loading />
-              ) : lecture?.video ? (
-                <>
-                  <div className={styles.videoContainer}>
+            {show && (
+              <div className={styles.lecture_form}>
+                <h2>Add Lecture</h2>
+                <form onSubmit={submitHandler}>
+                  <label htmlFor="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    required
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <label htmlFor="description">Description</label>
+                  <input
+                    type="text"
+                    id="description"
+                    required
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  <input
+                    type="file"
+                    accept="video/*"
+                    required
+                    onChange={changeVideoHandler}
+                  />
+                  {videoPrev && (
                     <video
-                      src={lecture.video}
+                      src={videoPrev}
                       width="100%"
                       height="auto"
                       controls
-                      disablePictureInPicture
-                      controlsList="nodownload noremoteplayback"
-                      disableRemotePlayback
-                      autoPlay
-                      onEnded={() => {
-                        addProgress(lecture._id)
-                      }}
-                      className={styles.video}
-                    ></video>
-                  </div>
-                  <div className={styles.lectureInfo}>
-                    <h1 className={styles.lectureTitle}>{lecture.title}</h1>
-                    <p className={styles.lectureDesc}>{lecture.description}</p>
-                  </div>
-                </>
-              ) : (
-                <h1 className={styles.selectPrompt}>Please select a lecture</h1>
-              )}
-            </div>
-
-            {/* Right Side - Lecture List and Admin Panel */}
-            <div className={styles.right}>
-              {/* Admin Toggle Button */}
-              {user?.role === "admin" && (
-                <button onClick={() => setShow(!show)} className={styles.btn}>
-                  {show ? "Close" : "Add Lecture"}
-                </button>
-              )}
-
-              {/* Add Lecture Form */}
-              {show && (
-                <div className={styles.lecture_form}>
-                  <h2>Add Lecture</h2>
-                  <form onSubmit={submitHandler}>
-                    <label htmlFor="title">Title</label>
-                    <input
-                      type="text"
-                      id="title"
-                      required
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
+                      className={styles.previewVideo}
                     />
+                  )}
+                  <button type="submit" className={styles.btn} disabled={btnLoading}>
+                    {btnLoading ? "Please Wait..." : "Add"}
+                  </button>
+                </form>
+              </div>
+            )}
 
-                    <label htmlFor="description">Description</label>
-                    <input
-                      type="text"
-                      id="description"
-                      required
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
-
-                    <input
-                      type="file"
-                      accept="video/*"
-                      required
-                      onChange={changeVideoHandler}
-                    />
-
-                    {videoPrev && (
-                      <video
-                        src={videoPrev}
-                        width="100%"
-                        height="auto"
-                        controls
-                        className={styles.previewVideo}
-                      />
-                    )}
-
-                    <button type="submit" className={styles.btn} disabled={btnLoading}>
-                      {btnLoading ? "Please Wait..." : "Add"}
-                    </button>
-                  </form>
-                </div>
-              )}
-
-              {/* Lecture List */}
-              <div className={styles.lectureList}>
-                {lectures && lectures.length > 0 ? (
-                  lectures.map((e, i) => (
-                    <div key={e._id} className={styles.lectureItem}>
-                      <div
-                        onClick={() => fetchLecture(e._id)}
-                        className={`${styles.lecNumber} ${
-                          lecture._id === e._id ? styles.active : ""
-                        }`}
-                      >
-                        {i + 1}. {e.title}
-                      </div>
-
-                      {/* Delete Button (Admin Only) */}
-                      {user?.role === "admin" && (
-                        <button
-                          onClick={() => deleteLectureHandler(e._id)}
-                          className={styles.deleteBtn}
-                        >
-                          Delete
-                        </button>
+            <div className={styles.lectureList}>
+              {lectures && lectures.length > 0 ? (
+                lectures.map((e, i) => (
+                  <div key={e._id} className={styles.lectureItem}>
+                    <div
+                      onClick={() => fetchLecture(e._id)}
+                      className={`${styles.lecNumber} ${lecture._id === e._id ? styles.active : ""}`}
+                    >
+                      {i + 1}. {e.title}
+                      {progress?.completedLectures?.includes(e._id) && (
+                        <span className={styles.tickCircle}>
+                          <TiTick color="white" size={12} />
+                        </span>
                       )}
                     </div>
-                  ))
-                ) : (
-                  <p className={styles.noLectures}>No lectures yet!</p>
-                )}
-              </div>
+                    {user?.role === "admin" && (
+                      <button
+                        onClick={() => deleteLectureHandler(e._id)}
+                        className={styles.deleteBtn}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p className={styles.noLectures}>📭 No lectures yet!</p>
+              )}
             </div>
           </div>
-        </>
-      )}
-    </UserLayout>
-    <Footer />
-  </>
+        </div>
+      </>
+    )}
+  </UserLayout>
+  <Footer />
+</>
+
 );
 
 };

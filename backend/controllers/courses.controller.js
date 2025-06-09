@@ -111,11 +111,11 @@ export const paymentVerification = tryCatch(async(req, res) => {
 
         user.subscription.push(course._id);
         
-        // await Progress.create({
-        //     course: course._id,
-        //     completedLectures: [],
-        //     user: req.user._id
-        // })
+        await Progress.create({
+            course: course._id,
+            completedLectures: [],
+            user: req.user._id
+        })
 
         await user.save();
 
@@ -145,7 +145,7 @@ export const addProgress = tryCatch(async(req, res) => {
     }
 
     progress.completedLectures.push(lectureId);
-    await Progress.save();
+    await progress.save();
 
     res.status(201).json({
         message: "new progress added",
@@ -158,12 +158,17 @@ export const getYourProgress = tryCatch(async (req, res) => {
         course: req.query.course,
     });
 
-    if(!progress) {
-        return res.status(404).json({ message: "null" })
+    // if(!progress) {
+    //     return res.status(404).json({ message: "null" })
+    // }
+    if (!progress) {
+        console.log("No progress found for", req.user._id, req.query.course);
+        return res.status(404).json({ message: "null" });
     }
 
+
     const allLectures = (await Lecture.find({course: req.query.course})).length;
-    const completedLectures = progress[0].completedLectures.length;
+    const completedLectures = progress.completedLectures.length;
     const courseProgressPercent = (completedLectures * 100)/allLectures;
 
     res.json({

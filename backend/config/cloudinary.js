@@ -26,3 +26,4 @@ const uploadToCloudinary = (buffer,folderName = "products") => {
 };
 
 export default uploadToCloudinary;
+export {cloudinary};

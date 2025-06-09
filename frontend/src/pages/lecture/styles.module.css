@@ -477,7 +477,7 @@
 
 /* progress bar */
 
-.progress {
+/* .progress {
   width: 20%;
   background-color: #333;
   padding: 6px;
@@ -485,4 +485,102 @@
   margin: 3px auto;
   text-align: center;
   color: white;
+}
+.progressWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.progressInfo {
+  font-size: 1rem;
+  text-align: left;
+  color: #333;
+}
+
+.pieContainer {
+  width: 100px;
+  height: 100px;
+}
+
+.circularChart {
+  display: block;
+  margin: auto;
+}
+
+.circleBg {
+  stroke: #eee;
+}
+
+.circle {
+  stroke: #00acc1;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.3s;
+} */
+
+.progressWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin: 2rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* .progressInfo {
+  flex: 1;
+} */
+
+.pieContainer {
+  width: 100px;
+  height: 100px;
+}
+
+.circularChart {
+  max-width: 100%;
+  max-height: 250px;
+  display: block;
+  margin: auto;
+  transform: rotate(-90deg);
+}
+
+.circleBg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 2;
+}
+
+.circle {
+  fill: none;
+  stroke: #00c853;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+/* Additional minor styles for consistency */
+.tickCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.noLectures {
+  color: #999;
+  padding: 1rem;
+  text-align: center;
 }
