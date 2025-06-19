@@ -1,6 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #f9f9fb;
+  --primary: #4F46E5;
+  --secondary: #6366F1;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.08);
+  --radius: 14px;
+  --transition: 0.3s ease-in-out;
+  --category-bg: #eef2ff;
+}
+
+
 body {
   margin: 0;
+  font-family: 'Inter', sans-serif;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  */
 }
